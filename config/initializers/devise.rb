@@ -273,7 +273,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  config.omniauth :spotify, SPOTIFY_KEY_ID, SECRET_KEY, scope:
+  config.omniauth :spotify, ENV["SPOTIFY_KEY_ID"], ENV["SECRET_KEY"], scope:
   'playlist-read-private user-read-private user-read-email user-read-recently-played playlist-read-collaborative streaming user-top-read'
 
 
