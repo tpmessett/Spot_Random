@@ -1,6 +1,18 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: black;
+  color: white;
+}
+
+.circle-icon {
+    background: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    color: $spotify-green;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,4 +21,12 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.logout a {
+  color: white
+}
+
+.logout a:hover {
+  color: $spotify-green
 }

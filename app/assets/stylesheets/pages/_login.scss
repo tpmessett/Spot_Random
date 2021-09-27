@@ -1,0 +1,41 @@
+.main-form {
+  max-width: 640px;
+  border-radius: 4px;
+  background-color: $light-gray;
+  padding: 24px 32px;
+  position: relative;
+  box-shadow: 0 0 16px rgba(0,0,0,0.25);
+  margin-bottom: 30vh;
+  text-align: center;
+
+}
+
+.form-holder {
+  display: flex;
+  align-items: center;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: black;
+}
+
+.login-button {
+  border-radius: 50px;
+  padding: 8px 16px;
+}
+
+.login-button:hover {
+  color: $spotify-green;
+  background-color: white;
+}
+
+h5 i {
+  color: $spotify-green;
+}
+
+@media (max-width: 540px) {
+  .main-form {
+    max-width: 95%;
+    padding: 16px 16px;
+  }
+}
