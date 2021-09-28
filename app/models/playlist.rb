@@ -1,3 +1,3 @@
-class Capability < ApplicationRecord
+class Playlist < ApplicationRecord
   belongs_to :user
 end
