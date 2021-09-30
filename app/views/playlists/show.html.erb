@@ -1,6 +1,8 @@
 <div class="container">
+
   <h3><%= @playlist.name %></h3>
   <% @playlist_tracks.each do |track| %>
   <p><%= track.name %> - <% track.artists.each do |artist| %><%= artist.name %> <% end %></p>
   <% end %>
+
 </div>

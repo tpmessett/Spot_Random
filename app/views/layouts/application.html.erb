@@ -4,7 +4,17 @@
     <title>SpotRandom</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="description" content="Build Random Queues of tracks for roadtrips, parties or other adventures">
+    <meta robots="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SpotRandom">
+    <meta property="og:description" content="Build Random Queues of tracks for roadtrips, parties or other adventures">
+    <meta property="og:image" content="<%= image_url('cassette.jpg') %>">
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="twitter:title" content="SpotRandom">
+    <meta property="twitter:description" content="Build Random Queues of tracks for roadtrips, parties or other adventures">
+    <meta property="twitter:image" content="<%= image_url('cassette.jpg') %>">
+    <%= favicon_link_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
@@ -16,5 +26,6 @@
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+
   </body>
 </html>
