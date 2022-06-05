@@ -1,5 +1,5 @@
 <div class="container">
-  <p><%= current_user.uid %></p>
+  <p><%= @user.uid %></p>
   <% @updated_playlists.each_with_index do |playlist, index| %>
     <p><%=index + 1%>) <%= link_to playlist_path(playlist) do %><%=playlist.name%><% end %></p>
   <% end %>

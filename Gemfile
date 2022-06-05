@@ -4,8 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.6'
 
 # spotify login
-gem 'rspotify', git: 'https://github.com/tpmessett/rspotify'
-
+gem 'rspotify'
+# git: 'https://github.com/tpmessett/rspotify'
+gem 'httparty'
 gem 'omniauth-spotify'
 gem "omniauth-rails_csrf_protection"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'

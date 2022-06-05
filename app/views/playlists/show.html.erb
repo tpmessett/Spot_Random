@@ -2,7 +2,10 @@
 
   <h3><%= @playlist.name %></h3>
   <% @playlist_tracks.each do |track| %>
-  <p><%= track.name %> - <% track.artists.each do |artist| %><%= artist.name %> <% end %></p>
+  <div><%= track.name %> - <% track.artists.each do |artist| %><%= artist.name %><% end %> - <%= track.id %></div>
+  <%= link_to play_path(:songid => track.id)  do %>
+    <div class="btn btn-outline-success">Add to Queue</div>
+  <% end %>
   <% end %>
 
 </div>

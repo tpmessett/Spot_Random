@@ -7,11 +7,16 @@ class User < ActiveRecord::Base
   :omniauthable, :omniauth_providers => [:spotify]
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-    end
+    # where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user = find_or_initialize_by(provider: auth.provider, uid: auth.uid)
+    user.provider = auth.provider
+    user.token = auth.credentials.token
+    user.uid = auth.uid
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0,20]
+    user.save
+    user
   end
 end
+
+
