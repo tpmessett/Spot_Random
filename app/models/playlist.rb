@@ -10,7 +10,6 @@ class Playlist < ApplicationRecord
       "Authorization" => "Bearer #{token}",
       "Content-Type" => "application/json"
     }
-    uri = URI.parse(url)
     return HTTParty.post(url, headers: headers)
   end
 end
