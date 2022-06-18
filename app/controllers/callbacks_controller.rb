@@ -5,7 +5,6 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
-    # @user = RSpotify::User.new(request.env['omniauth.auth'])
     puts @user.errors.to_a
 
     if @user

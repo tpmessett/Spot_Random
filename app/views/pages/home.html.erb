@@ -1,6 +1,38 @@
 <div class="container">
-  <p><%= @user.uid %></p>
+  <h1>Welcome</h1>
+  <p>Spot-Random builds you truly random queues of tracks based on your spotify playlists and likes.</p>
+  <h5>First, how long do you want the queue to be?</h5>
+  <%= form_tag root_path, method: :get do %>
+  <%= number_field_tag :tracks,
+        params[:tracks],
+        class: "form-control",
+        placeholder: "How many tracks?",
+        required: false,
+        min: 1
+      %>
+    <%= number_field_tag :hours,
+        params[:hours],
+        class: "form-control",
+        placeholder: "How many Hours?",
+        required: false
+      %>
+    <%= number_field_tag :mins,
+        params[:mins],
+        class: "form-control",
+        placeholder: "How many Minutes?",
+        required: false
+      %>
+    <h5>Next, what Kind of Music?</h5>
+    <p>Spotify Recommendations:</p>
+    <label for="top_artists">Include Songs from my Top Artists</label>
+    <%= check_box_tag "top_artists", 'top_artists', false %>
+    <label for="top_tracks">Include Songs from my Top tracks</label>
+    <%= check_box_tag "top_tracks", 'top_tracks', false %>
+  <% end %>
+  <!-- <p><%= @user.uid %></p>
+  <p><%=  @artists.parsed_response["items"].first["name"] %> - <%= @artists.parsed_response["items"].length %></p>
+  <p><%=  @tracks.parsed_response["items"].first["name"] %>- <%= @artists.parsed_response["items"].length %></p>
   <% @updated_playlists.each_with_index do |playlist, index| %>
     <p><%=index + 1%>) <%= link_to playlist_path(playlist) do %><%=playlist.name%><% end %></p>
-  <% end %>
+  <% end %> -->
 </div>

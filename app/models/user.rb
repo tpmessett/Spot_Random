@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     )
     @user = User.find(user.id)
     @user.token = result.parsed_response["access_token"]
-    @user.expiry = result.parsed_response["expires_in"] + @user.expiry
+    @user.expiry = Time.now.to_i + result.parsed_response["expires_in"]
     @user.save
   end
 
