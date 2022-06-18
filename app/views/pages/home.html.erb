@@ -28,11 +28,15 @@
     <%= check_box_tag "top_artists", 'top_artists', false %>
     <label for="top_tracks">Include Songs from my Top tracks</label>
     <%= check_box_tag "top_tracks", 'top_tracks', false %>
+    <p>Your Playlists</p>
+    <ul class="list-group">
+      <% @user_playlists.each do |playlist| %>
+        <li class="list-group-item">
+          <%= check_box_tag 'selected_playlists[]', playlist.listid %>
+          <%= h playlist.name %>
+        </li>
+      <% end %>
+    </ul>
+     <%= submit_tag "BUILD MY PLAY QUEUE", class: "btn btn-success label", id: "submit-button" %>
   <% end %>
-  <!-- <p><%= @user.uid %></p>
-  <p><%=  @artists.parsed_response["items"].first["name"] %> - <%= @artists.parsed_response["items"].length %></p>
-  <p><%=  @tracks.parsed_response["items"].first["name"] %>- <%= @artists.parsed_response["items"].length %></p>
-  <% @updated_playlists.each_with_index do |playlist, index| %>
-    <p><%=index + 1%>) <%= link_to playlist_path(playlist) do %><%=playlist.name%><% end %></p>
-  <% end %> -->
-</div>
+

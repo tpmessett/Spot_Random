@@ -14,22 +14,7 @@ class PagesController < ApplicationController
     @artists = Playlist.top_artists(@user.token, "medium_term")
     @tracks = Playlist.top_tracks(@user.token, "short_term")
     @user_playlists = Playlist.where(user: current_user)
-    if @playlists.length.positive?
-      @playlists.each do |playlist|
-        if @user_playlists.any?{ |a| a.listid == playlist.id }
-          the_playlist = @user_playlists.select{ |a| a.listid == playlist.id }
-          edit_playlist = the_playlist[0]
-          edit_playlist.update(name: playlist.name)
-        else
-          new_playlist = Playlist.new
-          new_playlist.name = playlist.name
-          new_playlist.user_id = current_user.id
-          new_playlist.listid = playlist.id
-          new_playlist.save
-        end
-      end
-
-    end
-    @updated_playlists = Playlist.where(user: current_user)
+    raise
   end
 end
+
