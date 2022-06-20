@@ -1,5 +1,8 @@
 <div class="container">
   <h1>Welcome</h1>
+  <% if @list_added.length > 0 %>
+    <%= @list_added %>
+  <% end %>
   <p>Spot-Random builds you truly random queues of tracks based on your spotify playlists and likes.</p>
   <h5>First, how long do you want the queue to be?</h5>
   <%= form_tag root_path, method: :get do %>
