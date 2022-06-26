@@ -31,4 +31,34 @@ class Playlist < ApplicationRecord
     }
     return HTTParty.get(url, headers: headers)
   end
+
+  def self.get_playlists(token)
+    url = "https://api.spotify.com/v1/me/playlists?offset=0&limit=50"
+    headers = {
+      "Authorization" => "Bearer #{token}",
+      "Content-Type" => "application/json",
+      "Host" => "api.spotify.com"
+    }
+    return HTTParty.get(url, headers: headers)
+  end
+
+  def self.get_tracks(token, id, offset)
+    url = "https://api.spotify.com/v1/playlists/#{id}/tracks?offset=#{offset}&limit=50"
+    headers = {
+      "Authorization" => "Bearer #{token}",
+      "Content-Type" => "application/json",
+      "Host" => "api.spotify.com"
+    }
+    return HTTParty.get(url, headers: headers)
+  end
+
+  # def self.get_playlists(token, id)
+  #   url = "https://api.spotify.com//v1/users/#{id}/playlists?offset=0&limit=50"
+  #   headers = {
+  #     "Authorization" => "Bearer #{token}",
+  #     "Content-Type" => "application/json",
+  #     "Host" => "api.spotify.com"
+  #   }
+  #   return HTTParty.get(url, headers: headers)
+  # end
 end

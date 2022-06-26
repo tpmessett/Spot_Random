@@ -9,41 +9,63 @@
   <% end %>
   <p>Spot-Random builds you truly random queues of tracks based on your spotify playlists and likes.</p>
   <h5>First, how long do you want the queue to be?</h5>
-  <%= form_tag root_path, method: :get do %>
-  <%= number_field_tag :tracks,
-        params[:tracks],
-        class: "form-control",
-        placeholder: "How many tracks?",
-        required: false,
-        min: 1
-      %>
-    <%= number_field_tag :hours,
-        params[:hours],
-        class: "form-control",
-        placeholder: "How many Hours?",
-        required: false
-      %>
-    <%= number_field_tag :mins,
-        params[:mins],
-        class: "form-control",
-        placeholder: "How many Minutes?",
-        required: false
-      %>
-    <h5>Next, what Kind of Music?</h5>
-    <p>Spotify Recommendations:</p>
+  <form>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="type-select" id="timeradio" value="time" checked>
+      <label class="form-check-label" for="timeradio">
+        Choose by length of time (mins and hours)
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="type-select" id="tracksradio" value="tracks">
+      <label class="form-check-label" for="tracksradio">
+        Choose by number of tracks
+      </label>
+    </div>
+  </form>
+  <div class="form">
+    <%= form_tag root_path, method: :get do %>
+    <div id="tracks-container">
+      <%= number_field_tag :tracks,
+            params[:tracks],
+            class: "form-control",
+            placeholder: "How many tracks?",
+            required: false,
+            min: 1
+          %>
+    </div>
+    <div id="time" class="d-flex">
+      <%= number_field_tag :hours,
+          params[:hours],
+          class: "form-control hours",
+          placeholder: "How many Hours?",
+          required: false
+        %>
+      <%= number_field_tag :mins,
+          params[:mins],
+          class: "form-control mins",
+          placeholder: "How many Minutes?",
+          required: false
+        %>
+    </div>
+  </div>
+    <h5>Next, Choose what playlists to include</h5>
+    <!-- <p>Spotify Recommendations:</p>
     <label for="top_artists">Include Songs from my Top Artists</label>
     <%= check_box_tag "top_artists", 'top_artists', false %>
     <label for="top_tracks">Include Songs from my Top tracks</label>
-    <%= check_box_tag "top_tracks", 'top_tracks', false %>
-    <p>Your Playlists</p>
+    <%= check_box_tag "top_tracks", 'top_tracks', false %> -->
+    <p>You can choose as many as you like</p>
     <ul class="list-group">
-      <% @user_playlists.each do |playlist| %>
+      <% @playlists.each do |playlist| %>
         <li class="list-group-item">
-          <%= check_box_tag 'selected_playlists[]', playlist.listid %>
-          <%= h playlist.name %>
+          <%= check_box_tag 'selected_playlists[]', playlist["id"] %>
+          <%= h playlist["name"] %>
         </li>
       <% end %>
     </ul>
+    <div class="button-container">
      <%= submit_tag "BUILD MY PLAY QUEUE", class: "btn btn-success label", id: "submit-button" %>
+    </div>
   <% end %>
 

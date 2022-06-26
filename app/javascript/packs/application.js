@@ -31,5 +31,24 @@ import "bootstrap";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-
+  if (document.getElementById('timeradio')){
+    const time = document.getElementById('timeradio')
+    const tracks = document.getElementById('tracksradio')
+    const hours = document.getElementById('hours')
+    const mins = document.getElementById('mins')
+    const trackNumber = document.getElementById('tracks')
+    tracks.onclick = () => {
+      console.log('tracks')
+      hours.value = ''
+      mins.value = ''
+      document.getElementById('tracks-container').style.display = "block";
+      document.getElementById('time').style.display = "none";
+    }
+    time.onclick = () => {
+      console.log('time')
+      trackNumber.value = ''
+      document.getElementById('tracks-container').style.display = "none";
+      document.getElementById('time').style.display = "flex";
+    }
+  }
 });

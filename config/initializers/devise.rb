@@ -274,7 +274,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
   config.omniauth :spotify, ENV["SPOTIFY_KEY_ID"], ENV["SECRET_KEY"], scope:
-  'user-top-read user-modify-playback-state playlist-read-private user-read-private user-read-email user-read-recently-played playlist-read-collaborative streaming user-top-read'
+  'user-top-read user-modify-playback-state playlist-read-collaborative playlist-read-private user-read-private user-read-email user-read-recently-played playlist-read-collaborative streaming user-top-read'
 
 
   # ==> Warden configuration

@@ -10,10 +10,11 @@ class PagesController < ApplicationController
       User.token_refresh(current_user)
     end
     @me = RSpotify::User.find(@user.uid)
-    @playlists = @me.playlists(limit: 50, offset: 0)
     # @artists = Playlist.top_artists(@user.token, "medium_term")
     # @tracks = Playlist.top_tracks(@user.token, "medium_term")
-    @user_playlists = Playlist.where(user: current_user)
+    user_playlists = Playlist.get_playlists(@user.token)
+    @playlists = user_playlists.parsed_response["items"]
+
     @list_added = []
     if params[:hours] != nil || params[:mins] != nil || params[:tracks] != nil
       selected_playlists = params[:selected_playlists]
@@ -35,11 +36,9 @@ class PagesController < ApplicationController
             break
           end
         end
-        raise
       end
       playlist.each do |song|
         add = play(song.id)
-        raise
         @list_added << [song.name, add]
       end
     end
@@ -49,11 +48,21 @@ class PagesController < ApplicationController
     RSpotify.authenticate(ENV["SPOTIFY_KEY_ID"], ENV["SECRET_KEY"])
     tracks = []
     selected_playlists.each do |playlist|
-      list = RSpotify::Playlist.find_by_id(playlist)
-      list.tracks.each do |track|
-        tracks << track
+      # list = RSpotify::Playlist.find_by_id(playlist)
+      offset = 0
+      loop do
+        response = Playlist.get_tracks(current_user.token, playlist, offset)
+        list = response.parsed_response["items"]
+        list.each do |track|
+          tracks << track
+        end
+        offset += 50
+        if list.length < 50 || list == nil
+          break
+        end
       end
     end
+    raise
     return tracks
   end
 end
