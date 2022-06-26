@@ -1,12 +1,23 @@
 <div class="container">
-  <h1>Welcome</h1>
-  <% if @list_added.length > 0 %>
+  <% if @list_added.length > 0 && @list_added[0][1].parsed_response == nil %>
+  <H2>The following songs have been added to your play queue:</H2>
   <ul>
     <% @list_added.each do |song| %>
       <li><%= song[0] %></li>
     <% end %>
   </ul>
+  <%= link_to root_path do %>
+    <button class="btn btn-outline-success">Add More</button>
   <% end %>
+  <% elsif @list_added != [] && @list_added[0][1].parsed_response["error"] != nil %>
+    <h2><%= @list_added[0][1].parsed_response["error"]["reason"] %></h2>
+    <p><%= @list_added[0][1].parsed_response["error"]["message"] %></p>
+    <p>Start playing spotify from your phone or device then try again.</p>
+    <%= link_to root_path do %>
+    <button class="btn btn-outline-success">Try Again</button>
+  <% end %>
+  <% else %>
+  <h1>Welcome</h1>
   <p>Spot-Random builds you truly random queues of tracks based on your spotify playlists and likes.</p>
   <h5>First, how long do you want the queue to be?</h5>
   <form>
@@ -68,4 +79,5 @@
      <%= submit_tag "BUILD MY PLAY QUEUE", class: "btn btn-success label", id: "submit-button" %>
     </div>
   <% end %>
+<% end %>
 

@@ -42,13 +42,15 @@ document.addEventListener('turbolinks:load', () => {
       hours.value = ''
       mins.value = ''
       document.getElementById('tracks-container').style.display = "block";
-      document.getElementById('time').style.display = "none";
+      hours.style.display = "none";
+      mins.style.display = "none"
     }
     time.onclick = () => {
       console.log('time')
       trackNumber.value = ''
       document.getElementById('tracks-container').style.display = "none";
-      document.getElementById('time').style.display = "flex";
+      hours.style.display = "block";
+      mins.style.display = "block"
     }
   }
 });

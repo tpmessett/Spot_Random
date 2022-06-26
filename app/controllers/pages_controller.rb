@@ -30,7 +30,7 @@ class PagesController < ApplicationController
         loop do
           n = random.pop
           playlist << all_tracks[n]
-          duration = all_tracks[n].duration_ms
+          duration = all_tracks[n]["track"]["duration_ms"]
           length << (duration / 1000)
           if length.sum >= track_length_seconds || random.length == 0
             break
@@ -38,8 +38,8 @@ class PagesController < ApplicationController
         end
       end
       playlist.each do |song|
-        add = play(song.id)
-        @list_added << [song.name, add]
+        add = play(song["track"]["id"])
+        @list_added << [song["track"]["name"], add]
       end
     end
   end
@@ -62,7 +62,6 @@ class PagesController < ApplicationController
         end
       end
     end
-    raise
     return tracks
   end
 end
