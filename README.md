@@ -1,5 +1,7 @@
 # A Random play queue generator for spotify
 
+Live version can be found at: https://spot-random.herokuapp.com
+
 ## Please note the app requires a Spotify Premium Acct to work.
 
 This app is built in Rails and uses a mix of direct calls to the spotify API with RSpotify (as I had problems making RsSpotify pick up certain playlist types)
